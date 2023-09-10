@@ -3,6 +3,8 @@ import { Routes as Router, Route, Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/login";
+import Service from "./pages/servicePage";
+import CreateService from "./pages/servicePage/createService";
 
 type Props = {};
 
@@ -20,6 +22,8 @@ const Routes = (props: Props) => {
       <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoutes />}>
         <Route path="/" element={<Home />} />
+        <Route path="/service" element={<Service />} />
+        <Route path="/create-service" element={<CreateService />} />
       </Route>
     </Router>
   );
