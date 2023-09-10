@@ -29,10 +29,15 @@ const Login = () => {
   const handleLogin = (email: string, password: string) => {
     postLogin(email, password)
       .then((res) => {
-        loggedIn(res.data.token);
-        login(res.data.user, res.data.token);
+        if (res.data.user.isAdmin) {
+          loggedIn(res.data.token);
+          login(res.data.user, res.data.token);
 
-        navigate("/");
+          navigate("/");
+        } else {
+          setToastMessage("ایمیل یا رمز وارد شده اشتباه است");
+          setMessageType("error");
+        }
       })
       .catch((error) => {
         setToastMessage("ایمیل یا رمز وارد شده اشتباه است");
@@ -57,6 +62,10 @@ const Login = () => {
           alignItems: "center",
         }}
       >
+        <img
+          style={{ width: "500px", height: "200px", objectFit: "cover" , fill:'white' }}
+          src="http://cs5.thorhammer.space/291372e5694826d105bf9750908bde8de.svg"
+        />
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>

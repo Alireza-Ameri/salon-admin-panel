@@ -5,6 +5,8 @@ interface IUser {
   deletedAt: string | null;
   email: string;
   username: string;
+  isAdmin: boolean;
+  isStoreOwner: boolean;
   image: string | null;
   firstName: string | null;
   lastName: string | null;
