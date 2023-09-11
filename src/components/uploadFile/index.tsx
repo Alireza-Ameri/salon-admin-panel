@@ -24,22 +24,22 @@ const FileUpload = () => {
   //   }
   // };
 
-    const upload = (e: React.FormEvent<HTMLInputElement>) => {
-      let formData: FormData = new FormData();
-      const target = e.target as HTMLInputElement & {
-        files: FileList;
-      };
-
-      console.log("target :", target.files[0]);
-      setFile(target.files[0]);
-      formData.append("file", target.files[0]);
-
-      console.log({ formData });
-
-  postUpload(formData)
-    .then((res) => console.log("res", res))
-    .catch((error) => console.log("error", error));
+  const upload = (e: React.FormEvent<HTMLInputElement>) => {
+    let formData: FormData = new FormData();
+    const target = e.target as HTMLInputElement & {
+      files: FileList;
     };
+
+    console.log("target :", target.files[0]);
+    setFile(target.files[0]);
+    formData.append("file", target.files[0]);
+
+    console.log({ formData });
+
+    postUpload(formData)
+      .then((res) => console.log("res", res))
+      .catch((error) => console.log("error", error));
+  };
 
   return (
     <div>

@@ -21,11 +21,12 @@ import FileUpload from "../../../components/uploadFile";
 
 const CreateService = () => {
   const { setToastMessage, setMessageType } = useContext(ToastContext);
-  const { login } = useAuth();
 
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [file, setFile] = useState<string>("http://cs5.thorhammer.space/f3635108bfb59c217c629924bb12d93a1.jpg");
+  const [file, setFile] = useState<string>(
+    "http://cs5.thorhammer.space/f3635108bfb59c217c629924bb12d93a1.jpg"
+  );
 
   const navigate = useNavigate();
 
@@ -35,12 +36,13 @@ const CreateService = () => {
         setToastMessage(" سرویس جدید با موفقیت ساخته شد");
         setMessageType("success");
         setTimeout(() => {
-            navigate("/service"); 
+          navigate("/service");
         }, 2000);
-        
       })
       .catch((error) => {
-        setToastMessage("ثبت سرویس جدید با مشکل مواجه شد. لطفا تمام فیلد هارو وارد کنید");
+        setToastMessage(
+          "ثبت سرویس جدید با مشکل مواجه شد. لطفا تمام فیلد هارو وارد کنید"
+        );
         setMessageType("error");
       });
   };
@@ -74,7 +76,7 @@ const CreateService = () => {
           component="form"
           onSubmit={(e) => {
             e.preventDefault();
-            handleSubmit(name, description, file)
+            handleSubmit(name, description, file);
           }}
           noValidate
           sx={{
