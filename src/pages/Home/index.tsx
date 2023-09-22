@@ -5,7 +5,6 @@ import { getProfile } from "../../api";
 import { ToastContext } from "../../context/ToastContext";
 import UserTable from "../../components/user/userTable";
 
-
 function Home() {
   // const { addUser } = useUser();
   const { setToastMessage, setMessageType } = useContext(ToastContext);
@@ -18,15 +17,13 @@ function Home() {
     //     setToastMessage("دریافت اطلاعات ادمین با مشکل روبرو شد");
     //     setMessageType("error");
     //   });
-
   }, []);
   return (
-    <div>
-      <NavBar />
+    <NavBar>
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <UserTable />
       </div>
-    </div>
+    </NavBar>
   );
 }
 

@@ -5,7 +5,7 @@ interface IData {}
 interface IResponse {}
 
 const postUpload = (formData: any) => {
-  return customAxios.post<any, any>("/user/upload", 
+  return customAxios.post<any, any>("/user/upload-file", 
     formData,
   );
 };

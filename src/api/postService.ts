@@ -11,7 +11,7 @@ interface IResponse {
 }
 
 const postService = (name: string, description: string, image: string) => {
-  return customAxios.post<any, any>("/service", {
+  return customAxios.post<any, any>("/service/create-service", {
     name,
     description,
     image,

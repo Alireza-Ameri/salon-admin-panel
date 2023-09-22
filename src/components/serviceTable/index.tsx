@@ -1,11 +1,8 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import  { FC, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
   CssBaseline,
-  TextField,
-  Typography,
-  InputAdornment,
   Table,
   TableBody,
   TableCell,
@@ -30,7 +27,7 @@ const ServiceTable: FC<IProps> = ({}) => {
   useEffect(() => {
     getService()
       .then((res) => {
-        setServices(res.data);
+        setServices(res.data.services);
       })
       .catch((error) => {
         setToastMessage("دریافت اطلاعات کاربران با مشکل روبرو شد");

@@ -4,7 +4,6 @@ const config: AxiosRequestConfig = {
   baseURL: `${process.env.REACT_APP_API_BASE_URL}`,
   headers: {
     Accept: "*/*",
-    "Content-Type": "application/json",
   },
   timeout: 3000,
 };

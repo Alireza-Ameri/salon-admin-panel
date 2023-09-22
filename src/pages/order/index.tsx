@@ -8,12 +8,11 @@ function Order() {
   const { setToastMessage, setMessageType } = useContext(ToastContext);
   useEffect(() => {}, []);
   return (
-    <div>
-      <NavBar />
+    <NavBar>
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <OrderTable />
       </div>
-    </div>
+    </NavBar>
   );
 }
 

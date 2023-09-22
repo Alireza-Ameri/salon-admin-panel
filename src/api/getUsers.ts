@@ -9,7 +9,7 @@ interface IResponse {
 }
 
 const getUsers = (skip?: number, limit?: number, search?: string) => {
-  return customAxios.get<never, IResponse>("/user", {
+  return customAxios.get<never, IResponse>("/user/get-all-users", {
     params: { skip: skip, limit: limit, search: search },
   });
 };

@@ -6,27 +6,22 @@ import { postService } from "../../../api";
 import { useAuth } from "../../../hooks/useAuth";
 
 import {
-  Avatar,
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Box,
   Typography,
   Grid,
 } from "@mui/material";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import FileUpload from "../../../components/uploadFile";
+import NavBar from "../../../components/navBar";
 
 const CreateService = () => {
   const { setToastMessage, setMessageType } = useContext(ToastContext);
-
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [file, setFile] = useState<string>(
-    "http://cs5.thorhammer.space/f3635108bfb59c217c629924bb12d93a1.jpg"
-  );
+ const [imageUrl, setImageUrl] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -48,11 +43,11 @@ const CreateService = () => {
   };
 
   return (
+    <NavBar>
     <Box
       sx={{
-        height: "100vh",
+        height: "100%",
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
       }}
     >
@@ -76,7 +71,7 @@ const CreateService = () => {
           component="form"
           onSubmit={(e) => {
             e.preventDefault();
-            handleSubmit(name, description, file);
+            handleSubmit(name, description, imageUrl);
           }}
           noValidate
           sx={{
@@ -122,7 +117,7 @@ const CreateService = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <FileUpload />
+              <FileUpload imageUrl={imageUrl} setImageUrl={setImageUrl} altName="service image"/>
             </Grid>
           </Grid>
           <Button
@@ -135,6 +130,7 @@ const CreateService = () => {
         </Box>
       </Box>
     </Box>
+    </NavBar>
   );
 };
 
