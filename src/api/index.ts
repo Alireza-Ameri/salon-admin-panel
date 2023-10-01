@@ -5,3 +5,4 @@ export * from "./getUsers";
 export * from "./postUpload";
 export * from "./postService";
 export * from './getServices'
+export * from './getAllOrders'

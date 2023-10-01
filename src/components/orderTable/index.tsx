@@ -16,15 +16,15 @@ import {
   Paper,
 } from "@mui/material";
 import { SearchOutlined, CloseOutlined } from "@mui/icons-material";
-import { IUser } from "../../types/user";
-import { getUsers } from "../../api";
+import { IOrder } from "../../types/service";
+import { getAllOrders } from "../../api";
 import { ToastContext } from "../../context/ToastContext";
 
 interface IProps {}
 
 const OrderTable: FC<IProps> = ({}) => {
   const { setToastMessage, setMessageType } = useContext(ToastContext);
-  const [users, setUsers] = useState<IUser[]>([]);
+  const [orders, setOrders] = useState<IOrder[]>([]);
   const [count, setCount] = useState<number>(0);
   const [pg, setpg] = useState<number>(0);
   const [limit, setLimit] = useState<number>(5);
@@ -43,9 +43,9 @@ const OrderTable: FC<IProps> = ({}) => {
 
   function handleChangePage(event: any, newpage: any) {
     setpg(newpage);
-    getUsers(newpage * limit, limit, search)
+    getAllOrders(newpage * limit, limit, search)
       .then((res) => {
-        setUsers(res.data.users);
+        setOrders(res.data.orders);
         setCount(res.data.count);
       })
       .catch((error) => {
@@ -58,9 +58,9 @@ const OrderTable: FC<IProps> = ({}) => {
     setLimit(parseInt(event.target.value, 10));
     setpg(0);
 
-    getUsers(0 * event.target.value, event.target.value, search)
+    getAllOrders(0 * event.target.value, event.target.value, search)
       .then((res) => {
-        setUsers(res.data.users);
+        setOrders(res.data.orders);
         setCount(res.data.count);
       })
       .catch((error) => {
@@ -70,9 +70,9 @@ const OrderTable: FC<IProps> = ({}) => {
   }
 
   useEffect(() => {
-    getUsers(pg * limit, limit, search)
+    getAllOrders(pg * limit, limit, search)
       .then((res) => {
-        setUsers(res.data.users);
+        setOrders(res.data.orders);
         setCount(res.data.count);
       })
       .catch((error) => {
@@ -93,14 +93,13 @@ const OrderTable: FC<IProps> = ({}) => {
                 <TableCell>ID</TableCell>
                 <TableCell>نام کاربری مشتری</TableCell>
                 <TableCell>نام و نام خانوادگی</TableCell>
-                <TableCell>شماره تماس</TableCell>
                 <TableCell>ایمیل</TableCell>
                 <TableCell>تاریخ</TableCell>
                 <TableCell>نوع سرویس</TableCell>
                 <TableCell>نام سالن</TableCell>
                 <TableCell>شماره تماس سالن</TableCell>
                 <TableCell>قیمت</TableCell>
-                {/* <TableCell>
+                <TableCell>
                   <TextField
                     style={{ width: "80%" }}
                     size="small"
@@ -124,46 +123,24 @@ const OrderTable: FC<IProps> = ({}) => {
                       ),
                     }}
                   />
-                </TableCell> */}
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow>
-                <TableCell>1</TableCell>
-                <TableCell>alireza</TableCell>
-                <TableCell>علیرضا عامری</TableCell>
-                <TableCell>09123456789 </TableCell>
-                <TableCell>alireza@yahoo.com</TableCell>
-                <TableCell>1402/7/1</TableCell>
-                <TableCell>کوتاه کردن مو</TableCell>
-                <TableCell>ارایشگاه پرویز </TableCell>
-                <TableCell>02120304050</TableCell>
-                <TableCell>۲۰۰۰۰ تومان</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>1</TableCell>
-                <TableCell>hosein</TableCell>
-                <TableCell> حسین امیری</TableCell>
-                <TableCell> 09123456789</TableCell>
-                <TableCell>hosein@yahoo.com</TableCell>
-                <TableCell>1402/7/1</TableCell>
-                <TableCell>کوتاه کردن مو</TableCell>
-                <TableCell>ارایشگاه پرویز </TableCell>
-                <TableCell>02120304050</TableCell>
-                <TableCell>۲۰۰۰۰ تومان</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>1</TableCell>
-                <TableCell>amir</TableCell>
-                <TableCell>امیر محمد کارگر</TableCell>
-                <TableCell>09123456789 </TableCell>
-                <TableCell>amir@yahoo.com</TableCell>
-                <TableCell>1402/7/1</TableCell>
-                <TableCell>کوتاه کردن مو</TableCell>
-                <TableCell>ارایشگاه پرویز </TableCell>
-                <TableCell>02120304050</TableCell>
-                <TableCell>۲۰۰۰۰ تومان</TableCell>
-              </TableRow>
+              {orders.map((order:IOrder) => {
+                return (<TableRow>
+                  <TableCell>{order.id}</TableCell>
+                  <TableCell>{order.user.username}</TableCell>
+                  <TableCell>{order.user.firstName} {order.user.lastName}</TableCell>
+                  <TableCell>{order.user.email} </TableCell>
+                  <TableCell>۱۴۰۲/۷/۱۰</TableCell>
+                  <TableCell>کوتاه کردن مو</TableCell>
+                  <TableCell>{order.salon.name}</TableCell>
+                  <TableCell>{order.salon.phone}</TableCell>
+                  <TableCell>{Math.floor(Math.random() * 1000000)  } تومان</TableCell>
+                </TableRow>)
+              })}
+       
             </TableBody>
           </Table>
         </TableContainer>
