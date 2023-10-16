@@ -31,7 +31,7 @@ const ServiceTable: FC<IProps> = ({}) => {
         setServices(res.data.services);
       })
       .catch((error) => {
-        setToastMessage("دریافت اطلاعات کاربران با مشکل روبرو شد");
+        setToastMessage("دریافت اطلاعات سرویس ها با مشکل روبرو شد");
         setMessageType("error");
       });
   }, []);

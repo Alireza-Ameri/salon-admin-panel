@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/login";
 import Service from "./pages/servicePage";
 import CreateService from "./pages/servicePage/createService";
+import EditService from "./pages/servicePage/editService";
 import Order from "./pages/order";
 import Salon from "./pages/salon";
 
@@ -26,6 +27,7 @@ const Routes = (props: Props) => {
         <Route path="/" element={<Home />} />
         <Route path="/service" element={<Service />} />
         <Route path="/create-service" element={<CreateService />} />
+        <Route path="/edit-service" element={<EditService />} />
         <Route path="/order" element={<Order />} />
         <Route path="/salon" element={<Salon />} />
       </Route>

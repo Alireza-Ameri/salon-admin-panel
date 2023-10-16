@@ -22,7 +22,7 @@ import {
   PlaceOutlined,
 } from "@mui/icons-material";
 import { ISalon } from "../../types/service";
-import { getProfile, getSalon ,postSalonVerify } from "../../api";
+import { getProfile, getSalon, postSalonVerify } from "../../api";
 import { ToastContext } from "../../context/ToastContext";
 
 interface IProps {}
@@ -81,7 +81,7 @@ const SalonTable: FC<IProps> = ({}) => {
         setCount(res.data.count);
       })
       .catch((error) => {
-        setToastMessage("دریافت اطلاعات کاربران با مشکل روبرو شد");
+        setToastMessage("دریافت اطلاعات سالن ها با مشکل روبرو شد");
         setMessageType("error");
       });
   }, [search]);
@@ -167,12 +167,60 @@ const SalonTable: FC<IProps> = ({}) => {
                       {salon.verified ? "تایید" : "مسدود"}
                     </TableCell>
                     <TableCell>
-                      <Button style={{ color: "red" }} onClick={() => {
-                        postSalonVerify(false,`${salon.id}`)
-                      }}>مسدود</Button>
-                      <Button style={{ color: "#0dff4d" }} onClick={() => {
-                        postSalonVerify(true,`${salon.id}`)
-                      }}>تایید</Button>
+                      <Button
+                        style={{ color: "red" }}
+                        onClick={() => {
+                          postSalonVerify(false, `${salon.id}`)
+                            .then((res) => {
+                              setToastMessage("مسدود سالن با موفقیت انجام شد");
+                              setMessageType("success");
+                              getSalon(pg * limit, limit, search)
+                                .then((res) => {
+                                  setSalons(res.data.salons);
+                                  setCount(res.data.count);
+                                })
+                                .catch((error) => {
+                                  setToastMessage(
+                                    "دریافت اطلاعات سالن ها با مشکل روبرو شد"
+                                  );
+                                  setMessageType("error");
+                                });
+                            })
+                            .catch((error) => {
+                              setToastMessage("مسدود سالن با مشکل روبرو شد");
+                              setMessageType("error");
+                            });
+                        }}
+                      >
+                        مسدود
+                      </Button>
+                      <Button
+                        style={{ color: "#0dff4d" }}
+                        onClick={() => {
+                          postSalonVerify(true, `${salon.id}`)
+                            .then((res) => {
+                              setToastMessage("تایید سالن با موفقیت انجام شد");
+                              setMessageType("success");
+                              getSalon(pg * limit, limit, search)
+                                .then((res) => {
+                                  setSalons(res.data.salons);
+                                  setCount(res.data.count);
+                                })
+                                .catch((error) => {
+                                  setToastMessage(
+                                    "دریافت اطلاعات سالن ها با مشکل روبرو شد"
+                                  );
+                                  setMessageType("error");
+                                });
+                            })
+                            .catch((error) => {
+                              setToastMessage("تایید سالن با مشکل روبرو شد");
+                              setMessageType("error");
+                            });
+                        }}
+                      >
+                        تایید
+                      </Button>
                     </TableCell>
                   </TableRow>
                 );

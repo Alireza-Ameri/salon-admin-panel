@@ -9,7 +9,7 @@ interface IResponse {
 }
 
 const postSalonVerify = (verified: boolean , id:string) => {
-  return customAxios.post<any, any>(`/salon/verify-salon/${id}`, {
+  return customAxios.post<IData, any>(`/salon/verify-salon/${id}`, {
     verified,
   });
 };

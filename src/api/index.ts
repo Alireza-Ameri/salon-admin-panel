@@ -8,3 +8,5 @@ export * from "./getServices";
 export * from "./getAllOrders";
 export * from "./getSalon";
 export * from "./postSalonVerify";
+export * from "./deleteService";
+export * from "./patchService";

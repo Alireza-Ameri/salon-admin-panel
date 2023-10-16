@@ -10,12 +10,12 @@ interface IResponse {
   data: {};
 }
 
-const postService = (name: string, description: string, image: string) => {
-  return customAxios.post<IData, any>("/service/create-service", {
+const patchService = ( id:string,name: string, description: string, image: string) => {
+  return customAxios.patch<IData, any>(`/service/update-service/${id}`, {
     name,
     description,
     image,
   });
 };
 
-export { postService };
+export { patchService };
