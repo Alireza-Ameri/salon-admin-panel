@@ -27,7 +27,7 @@ const Routes = (props: Props) => {
         <Route path="/" element={<Home />} />
         <Route path="/service" element={<Service />} />
         <Route path="/create-service" element={<CreateService />} />
-        <Route path="/edit-service" element={<EditService />} />
+        <Route path="/edit-service/:id" element={<EditService />} />
         <Route path="/order" element={<Order />} />
         <Route path="/salon" element={<Salon />} />
       </Route>

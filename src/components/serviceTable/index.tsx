@@ -15,7 +15,7 @@ import {
 
 import { DeleteOutline, EditOutlined } from "@mui/icons-material";
 import { IService } from "../../types/service";
-import { getService } from "../../api";
+import { getService , deleteService } from "../../api";
 import { ToastContext } from "../../context/ToastContext";
 
 interface IProps {}
@@ -88,10 +88,28 @@ const ServiceTable: FC<IProps> = ({}) => {
                     <TableCell></TableCell>
                     <TableCell></TableCell>
                     <TableCell>
-                      <Button>
+                      <Button onClick={() => {
+                        deleteService(`${service.id}`).then((res) => {
+                          setToastMessage("حذف سرویس با موفقیت انجام شد");
+                          setMessageType("success");
+                          getService()
+                          .then((res) => {
+                            setServices(res.data.services);
+                          })
+                          .catch((error) => {
+                            setToastMessage("دریافت اطلاعات سرویس ها با مشکل روبرو شد");
+                            setMessageType("error");
+                          });
+                        }).catch((error) => {
+                          setToastMessage("حذف سرویس با مشکل روبرو شد");
+                          setMessageType("error");
+                        })
+                      }}>
                         <DeleteOutline />
                       </Button>
-                      <Button>
+                      <Button    onClick={() => {
+              navigate(`/edit-service/${service.id}`);
+            }}>
                         <EditOutlined />
                       </Button>
                     </TableCell>

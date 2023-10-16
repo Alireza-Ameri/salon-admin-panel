@@ -113,6 +113,7 @@ const CreateService = () => {
                 onChange={(e) => setDescription(e.target.value)}
                 autoFocus
                 minRows={4}
+                maxLength={500}
               />
             </Grid>
 
