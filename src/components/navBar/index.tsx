@@ -23,6 +23,7 @@ type Props = {
 
 const navItems = [
   { name: "خانه", route: "/" },
+  { name: "سالن ها", route: "/salon" },
   { name: "سرویس ها", route: "/service" },
   { name: "سفارشات", route: "/order" },
 ];

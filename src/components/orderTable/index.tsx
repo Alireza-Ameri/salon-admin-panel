@@ -90,7 +90,6 @@ const OrderTable: FC<IProps> = ({}) => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
                 <TableCell>نام کاربری مشتری</TableCell>
                 <TableCell>نام و نام خانوادگی</TableCell>
                 <TableCell>ایمیل</TableCell>
@@ -99,48 +98,27 @@ const OrderTable: FC<IProps> = ({}) => {
                 <TableCell>نام سالن</TableCell>
                 <TableCell>شماره تماس سالن</TableCell>
                 <TableCell>قیمت</TableCell>
-                <TableCell>
-                  <TextField
-                    style={{ width: "80%" }}
-                    size="small"
-                    variant="outlined"
-                    value={search}
-                    onChange={handleChange}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <SearchOutlined />
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment
-                          position="end"
-                          style={{ display: showClearIcon, cursor: "pointer" }}
-                          onClick={handleClick}
-                        >
-                          <CloseOutlined />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map((order:IOrder) => {
-                return (<TableRow>
-                  <TableCell>{order.id}</TableCell>
-                  <TableCell>{order.user.username}</TableCell>
-                  <TableCell>{order.user.firstName} {order.user.lastName}</TableCell>
-                  <TableCell>{order.user.email} </TableCell>
-                  <TableCell>۱۴۰۲/۷/۱۰</TableCell>
-                  <TableCell>کوتاه کردن مو</TableCell>
-                  <TableCell>{order.salon.name}</TableCell>
-                  <TableCell>{order.salon.phone}</TableCell>
-                  <TableCell>{Math.floor(Math.random() * 1000000)  } تومان</TableCell>
-                </TableRow>)
+              {orders.map((order: IOrder) => {
+                return (
+                  <TableRow>
+                    <TableCell>{order.user.username}</TableCell>
+                    <TableCell>
+                      {order.user.firstName} {order.user.lastName}
+                    </TableCell>
+                    <TableCell>{order.user.email} </TableCell>
+                    <TableCell>۱۴۰۲/۷/۱۰</TableCell>
+                    <TableCell>کوتاه کردن مو</TableCell>
+                    <TableCell>{order.salon.name}</TableCell>
+                    <TableCell>{order.salon.phone}</TableCell>
+                    <TableCell>
+                      {order.price} تومان
+                    </TableCell>
+                  </TableRow>
+                );
               })}
-       
             </TableBody>
           </Table>
         </TableContainer>

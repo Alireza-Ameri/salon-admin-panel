@@ -6,6 +6,7 @@ import Login from "./pages/login";
 import Service from "./pages/servicePage";
 import CreateService from "./pages/servicePage/createService";
 import Order from "./pages/order";
+import Salon from "./pages/salon";
 
 type Props = {};
 
@@ -26,6 +27,7 @@ const Routes = (props: Props) => {
         <Route path="/service" element={<Service />} />
         <Route path="/create-service" element={<CreateService />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/salon" element={<Salon />} />
       </Route>
     </Router>
   );
