@@ -29,7 +29,6 @@ const EditService = () => {
   useEffect(() => {
     getServiceById(`${id}`)
       .then((res) => {
-        console.log(res);
         setName(res.data.name);
         setDescription(res.data.description);
         setImageUrl(res.data.image);

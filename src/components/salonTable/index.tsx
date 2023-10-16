@@ -86,11 +86,7 @@ const SalonTable: FC<IProps> = ({}) => {
       });
   }, [search]);
 
-  useEffect(() => {
-    getSalon()
-      .then((res) => console.log({ res }))
-      .catch((error) => console.log(error));
-  }, []);
+
 
   return (
     <Box style={{ width: "80%", marginBottom: "30px" }}>
